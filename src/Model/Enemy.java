@@ -2,25 +2,63 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Enemy extends GameObject implements Directable {
-	
-	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+public class Enemy extends GameObject implements Directable,Runnable {
+	int sleeptime = 200;
 	int lifes = 0;
 	int direction = EAST;
+	Thread t;
 	
-	public Enemy(int x, int y, int maxBomb, int lifes) {
-		super(x, y, 0);
+	public Enemy(int x, int y, int lifes) {
+		super(x,y,0);
 	    this.lifes = lifes;
+	    t = new Thread(this);
+	    t.start();
 	    }
+	
+	public void MoveEnemy(int x, int y) {
+		while (true) {
+			if(x<5 && y<5) {
+				y=y;
+				this.posX=x+1;
+			}
+			else {
+				x=x;
+				y=y+1;
+			}
+		}
+	}
+	
+	
+	
+	public void run(){
+		try {
+			Thread.sleep(this.sleeptime);
+			this.MoveEnemy(1, 1);
+			}catch (InterruptedException e) {
+			e.printStackTrace();
+			}
+			}
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 	 public int getDirection() {
 		    return direction;
 		    }
-	
+
 	 
 	 public boolean isObstacle() {
-	        return false;
+	        return true;
 	    }
 	 
 	 public int getLife() {

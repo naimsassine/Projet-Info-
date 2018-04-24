@@ -36,6 +36,7 @@ public class Keyboard implements KeyListener {
              break;
         case KeyEvent.VK_P:
              game.playerPos(player1);
+             break;
         case KeyEvent.VK_L:
             game.playerLife(player1);     
         }

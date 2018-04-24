@@ -24,6 +24,10 @@ public class Game implements DeletableObserver {
 
         // Creating one Player at position (1,1)
         objects.add(new Player(10, 10, 3, 1));
+   
+        Enemy en1 = new Enemy(1,1,1);
+        objects.add(en1);
+        
 
         // Map building
         for (int i = 0; i < size; i++) {
@@ -78,7 +82,13 @@ public class Game implements DeletableObserver {
         }
         notifyView();
     }
+    
+   
 
+    
+    
+    
+    
     public void action(int playerNumber) {
         Player player = ((Player) objects.get(playerNumber));
         Activable aimedObject = null;
