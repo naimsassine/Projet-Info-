@@ -1,9 +1,12 @@
 package Model;
-
+import View.Window;
 import java.util.ArrayList;
 
+import Controller.Keyboard;
+import View.Window;
+
 public class Enemy extends GameObject implements Directable,Runnable {
-	int sleeptime = 200;
+	int sleeptime = 1000;
 	int lifes = 0;
 	int direction = EAST;
 	Thread t;
@@ -15,40 +18,26 @@ public class Enemy extends GameObject implements Directable,Runnable {
 	    t.start();
 	    }
 	
-	public void MoveEnemy(int x, int y) {
-		while (true) {
-			if(x<5 && y<5) {
-				y=y;
-				this.posX=x+1;
-			}
-			else {
-				x=x;
-				y=y+1;
-			}
-		}
-	}
 	
-	
+	private void notifyView() {
+        Game.window.update();
+    }
+
 	
 	public void run(){
 		try {
-			Thread.sleep(this.sleeptime);
-			this.MoveEnemy(1, 1);
+			for (int i = 0; i < 14; i++) {
+				Thread.sleep(sleeptime);
+				Keyboard.game.MoveEnemy(1, 0,this);
+				Thread.sleep(sleeptime);
+				Keyboard.game.MoveEnemy(0, 1,this);
+				
+			}
 			}catch (InterruptedException e) {
-			e.printStackTrace();
+				e.printStackTrace();
 			}
 			}
 		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
 
 	
 	

@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import Model.Game;
 
 public class Keyboard implements KeyListener {
-    private Game game;
+    public static Game game;
 
     private static final int player1 = 0;
 

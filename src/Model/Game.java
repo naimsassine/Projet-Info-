@@ -12,12 +12,13 @@ import org.omg.CosNaming.IstringHelper;
 public class Game implements DeletableObserver {
     private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 
-    private Window window;
+    public static Window window;
     private int size = 14;
     // private int bombTimer = 3000;
     private int numberOfBreakableBlocks = 27;
     MagicPotionLife mpl;
     int lifeplus = 1;
+   
 
     public Game(Window window) {
         this.window = window;
@@ -25,8 +26,8 @@ public class Game implements DeletableObserver {
         // Creating one Player at position (1,1)
         objects.add(new Player(10, 10, 3, 1));
    
-        Enemy en1 = new Enemy(1,1,1);
-        objects.add(en1);
+        Enemy ennemy = new Enemy(1,1,1); 
+        objects.add(ennemy);
         
 
         // Map building
@@ -82,11 +83,27 @@ public class Game implements DeletableObserver {
         }
         notifyView();
     }
-    
-   
-
-    
-    
+    public void MoveEnemy(int x, int y, Enemy ennemy) {
+    	int nextX = ennemy.getPosX() + x;
+        int nextY = ennemy.getPosY() + y;
+        boolean obstacle = false;
+        for (GameObject object : objects) {
+            if (object.isAtPosition(nextX, nextY)) {
+                obstacle = object.isObstacle();
+            }
+            if (obstacle == true) {
+            	break;
+            }
+            
+        }
+        
+        
+        if (obstacle == false) {
+        	ennemy.posX = ennemy.posX + x;
+    		ennemy.posY = ennemy.posY + y;
+        }		
+		notifyView();
+	}   
     
     
     public void action(int playerNumber) {
