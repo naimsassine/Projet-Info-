@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Model.BlockBreakable;
+import Model.Teleportation;
 import Model.BlockUnbreakable;
 import Model.Directable;
 import Model.GameObject;
@@ -70,6 +71,11 @@ public class Map extends JPanel {
             
             if (object instanceof BlockUnbreakable) {               //Question, prkoi sa marche pas avec color
             	icon = new ImageIcon("brick_gray1.png");
+                image=icon.getImage();
+                g.drawImage(image,x * 50, y * 50, 48, 48, null);
+            }
+            if (object instanceof Teleportation) {               //Question, prkoi sa marche pas avec color
+            	icon = new ImageIcon("dngn_blue_fountain.png");
                 image=icon.getImage();
                 g.drawImage(image,x * 50, y * 50, 48, 48, null);
             }

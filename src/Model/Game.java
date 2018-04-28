@@ -18,6 +18,7 @@ public class Game implements DeletableObserver {
     private int numberOfBreakableBlocks = 27;
     MagicPotionLife mpl;
     int lifeplus = 1;
+    Teleportation tele;
    
 
     public Game(Window window) {
@@ -52,6 +53,14 @@ public class Game implements DeletableObserver {
         int color1 = 4;
         MagicPotionLife mpl = new MagicPotionLife(x1, y1, color1);
         objects.add(mpl);
+        
+        int x3 = 12;
+        int y3 = 1;
+        int color3 = 4;
+        Teleportation tele = new Teleportation(x3,y3,color3);
+        objects.add(tele);
+        
+        
 
         window.setGameObjects(this.getGameObjects());
         notifyView();
@@ -70,6 +79,9 @@ public class Game implements DeletableObserver {
                 if (object instanceof MagicPotionLife == true ) {
                 	player.addLife(lifeplus);
                 	}
+                if (object instanceof Teleportation == true ) {
+                	player.teleporte(1, 12);
+                }
             }
             if (obstacle == true) {
                 break;

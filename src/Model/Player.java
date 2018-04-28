@@ -14,6 +14,11 @@ public class Player extends GameObject implements Directable {
         this.posX = this.posX + X;
         this.posY = this.posY + Y;
     }
+    
+    public void teleporte(int x3, int y3) {
+    	this.posX = x3;
+        this.posY = y3;
+    }
 
     public void rotate(int x, int y) {
         if(x == 0 && y == -1)
